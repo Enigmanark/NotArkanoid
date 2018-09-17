@@ -23,4 +23,9 @@ function Paddle:update(dt, world)
   end
 end
 
+function Paddle:draw(dt)
+  --Draw paddle
+  love.graphics.rectangle("line", self.position.x, self.position.y, self.width, self.height)
+end
+
 return Paddle

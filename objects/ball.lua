@@ -32,6 +32,12 @@ function Ball:update(dt, world)
     end
   end
 
+  function Ball:draw(dt)
+      --Draw Ball
+    local circle_segments = 16
+    love.graphics.circle("line", self.position.x, self.position.y, self.radius, circle_segments)
+  end
+
 end
 
 return Ball
