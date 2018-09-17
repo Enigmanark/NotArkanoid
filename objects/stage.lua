@@ -52,7 +52,7 @@ function Stage:initialize()
 
     --Add blocks
     for i, block in pairs(blocks) do
-        self.world:add(block.id, block.x, block.y, block.width, block.height)
+        self.world:add(block, block.x, block.y, block.width, block.height)
     end
 end
 
@@ -67,6 +67,14 @@ end
 function Stage:update(dt)
     ball:update(dt, self.world)
     paddle:update(dt, self.world)
+
+    --Update blocks
+    for i, block in pairs(blocks) do
+        if block.dead == true then
+            blocks[i] = nil
+            self.world:remove(block)
+        end
+    end
 end
 
 return Stage

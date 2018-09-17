@@ -20,6 +20,9 @@ function Ball:update(dt, world)
   self.position.y = actualY
   for i = 1, #cols do
     local collision = cols[i]
+    if collision.other.name == "Block" then
+      collision.other.dead = true
+    end
     local nx = collision.normal.x
     local ny = collision.normal.y
 
