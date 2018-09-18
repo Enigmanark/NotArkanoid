@@ -7,8 +7,9 @@ local ballFilter = function(item, other)
 end
 
 function Ball:initialize()
-  self.position = vector(100, 100)
-  self.speed = vector(-300, 300)
+  self.startPosition = vector(0, 0)
+  self.position = self.startPosition
+  self.speed = vector(270, 270)
   self.radius = 10
 end
 
@@ -34,13 +35,20 @@ function Ball:update(dt, world)
       self.speed.y = -self.speed.y
     end
   end
+end
 
-  function Ball:draw(dt)
-      --Draw Ball
-    local circle_segments = 16
-    love.graphics.circle("line", self.position.x, self.position.y, self.radius, circle_segments)
-  end
+function Ball:draw(dt)
+    --Draw Ball
+  local circle_segments = 16
+  love.graphics.circle("line", self.position.x, self.position.y, self.radius, circle_segments)
+end
 
+function Ball:restart(world)
+  local newX = self.startPosition.x
+  local newY = self.startPosition.y
+  local actualX, actualY, cols, len = world:move(self, newX, newY, ballFilter)
+  self.position.x = actualX
+  self.position.y = actualY
 end
 
 return Ball

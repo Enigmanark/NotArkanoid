@@ -1,13 +1,13 @@
 local class = require("../libs/lowerclass/lowerclass")
 local Block = class("Block")
 
-function Block:initialize(id, x, y, width, height)
+function Block:initialize(id, x, y)
     self.name = "Block"
     self.id = id
     self.x = x
     self.y = y
-    self.width = width
-    self.height = height
+    self.width = blockWidth
+    self.height = blockHeight
     self.dead = false
 end
 

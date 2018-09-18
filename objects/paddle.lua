@@ -6,7 +6,7 @@ function Paddle:initialize()
   self.position = vector(500, 560)
   self.width = 100
   self.height = 7
-  self.speed = 400
+  self.speed = 450
 end
 
 function Paddle:update(dt, world)
@@ -26,6 +26,12 @@ end
 function Paddle:draw(dt)
   --Draw paddle
   love.graphics.rectangle("line", self.position.x, self.position.y, self.width, self.height)
+end
+
+function Paddle:restart(world)
+  local newX = 200
+  local actualX, actualY, cols, len = world:move(self, newX, self.position.y)
+  self.position.x = actualX
 end
 
 return Paddle
